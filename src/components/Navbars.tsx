@@ -37,8 +37,6 @@ function Navbars({opened}: NavbarsTypes) {
   const segment = useSelectedLayoutSegment()
   const {classes} = useStyles()
 
-  console.log(segment)
-
   const links = mainLinksMockdata.map(link => (
     <Link key={link.label} href={link.href}>
       <NavLink
