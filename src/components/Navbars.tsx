@@ -9,25 +9,6 @@ type NavbarsTypes = {
   opened: boolean
 }
 
-const useStyles = createStyles(theme => ({
-  wrapper: {
-    display: 'flex',
-  },
-
-  main: {
-    flex: 1,
-    padding: '15px 28px',
-    backgroundColor: theme.colors.gray[0],
-  },
-
-  link: {
-    borderRadius: '7px',
-    height: '45px',
-    margin: '10px 0',
-    fontSize: '14px',
-  },
-}))
-
 const mainLinksMockdata = [
   {icon: IconHome2, label: 'Products', href: '/', segment: '(products)'},
   {icon: IconGauge, label: 'Carts', href: '/carts', segment: 'carts'},
@@ -50,12 +31,35 @@ function Navbars({opened}: NavbarsTypes) {
   ))
 
   return (
-    <Navbar hiddenBreakpoint="sm" hidden={!opened} width={{sm: 200, lg: 300}}>
+    <Navbar
+      hiddenBreakpoint="sm"
+      hidden={!opened}
+      width={{sm: 200, lg: 300}}
+      className="bg-white"
+    >
       <Navbar.Section grow className={classes.wrapper}>
         <div className={classes.main}>{links}</div>
       </Navbar.Section>
     </Navbar>
   )
 }
+
+const useStyles = createStyles(theme => ({
+  wrapper: {
+    display: 'flex',
+  },
+
+  main: {
+    flex: 1,
+    padding: '15px 28px',
+  },
+
+  link: {
+    borderRadius: '7px',
+    height: '45px',
+    margin: '10px 0',
+    fontSize: '14px',
+  },
+}))
 
 export default Navbars

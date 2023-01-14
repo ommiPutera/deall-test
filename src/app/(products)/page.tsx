@@ -1,4 +1,6 @@
-import TableComponent from '../../components/Table'
+import List from '@/components/products/list'
+import SearchProduct from '@/components/products/search-product'
+import TableComponent from '@/components/Table'
 
 type ProductType = {
   id: number
@@ -16,31 +18,13 @@ type ProductsType = {
   limit: number
 }
 
-async function getAllProducts(): Promise<any | null> {
-  try {
-    const response = await fetch('https://dummyjson.com/products')
-    if (!response?.ok) {
-      return null
-    }
-    const json = await response.json()
-    return json
-  } catch (error) {
-    return null
-  }
-}
-
-const columns = [
-  {title: 'Product Name', key: 'title'},
-  {title: 'Brand', key: 'brand'},
-  {title: 'Price', key: 'price'},
-  {title: 'Stock', key: 'stock'},
-  {title: 'Category', key: 'category'},
-]
-
 async function IndexPage() {
-  const produtsItems = await getAllProducts()
-
-  return <TableComponent items={produtsItems.products} columns={columns} />
+  return (
+    <TableComponent>
+      <SearchProduct />
+      <List />
+    </TableComponent>
+  )
 }
 
 export default IndexPage

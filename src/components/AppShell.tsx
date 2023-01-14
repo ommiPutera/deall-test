@@ -3,17 +3,12 @@
 import React, {useState} from 'react'
 import {
   AppShell,
-  Navbar,
   Header,
-  Footer,
-  Aside,
   Text,
   MediaQuery,
   Burger,
   useMantineTheme,
-  NavLink,
 } from '@mantine/core'
-import {IconHome2} from '@tabler/icons'
 import Navbars from './Navbars'
 
 type AppShellTypes = {
@@ -28,10 +23,8 @@ export default function ApplicationContainer({children}: AppShellTypes) {
     <AppShell
       styles={{
         main: {
-          background:
-            theme.colorScheme === 'dark'
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
+          margin: '0 auto',
+          backgroundColor: theme.colors.gray[0],
         },
       }}
       navbarOffsetBreakpoint="sm"
@@ -49,7 +42,6 @@ export default function ApplicationContainer({children}: AppShellTypes) {
                 mr="xl"
               />
             </MediaQuery>
-
             <Text>Application header</Text>
           </div>
         </Header>
