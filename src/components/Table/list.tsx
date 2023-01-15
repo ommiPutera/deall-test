@@ -6,6 +6,7 @@ interface IColumn {
   title: string
   key: string
   key2?: string
+  render?: (e: any) => React.ReactNode
   className?: string
   formatUSD?: boolean
 }
@@ -37,9 +38,17 @@ function TableList({items, columns}: ITable) {
           {Boolean(items?.length) &&
             items.map((item: any) => (
               <tr key={item.id}>
-                {columns.map((column: IColumn) => (
-                  <DefaultTd key={column.key} column={column} item={item} />
-                ))}
+                {columns.map((column: IColumn) => {
+                  if (typeof column.render === 'function') {
+                    return (
+                      <CustomTd key={column.key} column={column} item={item} />
+                    )
+                  } else {
+                    return (
+                      <DefaultTd key={column.key} column={column} item={item} />
+                    )
+                  }
+                })}
               </tr>
             ))}
         </tbody>
@@ -65,6 +74,13 @@ function DefaultTd({column, item}: {column: IColumn; item: any}) {
       )}
     </td>
   )
+}
+
+function CustomTd({column, item}: {column: IColumn; item: any}) {
+  if (column.render) {
+    return <td key={column.key}>{column.render(item)}</td>
+  }
+  return <></>
 }
 
 const useStyles = createStyles(theme => ({
