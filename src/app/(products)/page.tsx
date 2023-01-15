@@ -1,4 +1,4 @@
-import List from '@/components/products/list'
+import {List} from '@/components/products/list'
 import SearchProduct from '@/components/products/search-product'
 import TableComponent from '@/components/Table'
 

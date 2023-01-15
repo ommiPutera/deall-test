@@ -5,7 +5,7 @@ import {IconSearch} from '@tabler/icons'
 import clsx from 'clsx'
 
 type SearchType = {
-  onHandle: (e: any) => void
+  onHandle: (e: React.FormEvent<HTMLInputElement>) => void
 }
 
 function TableSearch({onHandle}: SearchType) {

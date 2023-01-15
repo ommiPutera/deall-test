@@ -31,7 +31,9 @@ const columns = [
 ]
 
 function List() {
-  const {products, setProducts} = useProductsStore(state => state)
+  const {products, setProducts, isSearchEmpty} = useProductsStore(
+    state => state,
+  )
 
   const getProducts = React.useCallback(async () => {
     const res = await getAllProducts()
@@ -39,10 +41,12 @@ function List() {
   }, [setProducts])
 
   React.useEffect(() => {
-    getProducts()
-  }, [getProducts])
+    if (isSearchEmpty) {
+      getProducts()
+    }
+  }, [getProducts, isSearchEmpty])
 
   return <TableList items={products} columns={columns} />
 }
 
-export default List
+export {List, getAllProducts}
