@@ -21,21 +21,32 @@ async function getSearched(inputValue: string): Promise<any | null> {
 }
 
 function SearchProduct() {
-  const {setProducts, isSearchEmpty, setIsSearchEmpty} = useProductsStore(
-    state => state,
-  )
+  const {
+    setProducts,
+    isSearchEmpty,
+    setIsLoading,
+    setSkip,
+    setLimit,
+    setItems,
+    setIsSearchEmpty,
+  } = useProductsStore(state => state)
   const [search, setSearch] = React.useState('')
   const debouncedSearch = useDebounce({value: search, delay: 500})
 
   const handleSubmit = React.useCallback(async () => {
     const searchedItems = await getSearched(debouncedSearch)
+    setItems(searchedItems)
     setProducts(searchedItems.products)
-  }, [debouncedSearch, setProducts])
+    setIsLoading(false)
+  }, [debouncedSearch, setIsLoading, setItems, setProducts])
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.value) {
       setSearch(e.currentTarget.value)
       setIsSearchEmpty(false)
+      setIsLoading(true)
+      setSkip(0)
+      setLimit(10)
     } else if (!e.currentTarget.value) {
       setIsSearchEmpty(true)
     }

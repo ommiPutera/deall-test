@@ -6,14 +6,14 @@ import React from 'react'
 import TableList from '../Table/list'
 
 async function getAllProducts(
-  limit: string,
-  skip: string,
+  limit: number,
+  skip: number,
 ): Promise<any | null> {
   let url = 'https://dummyjson.com/products'
   if (limit) {
     url += '?limit=' + limit
   }
-  if (skip) {
+  if (skip || skip === 0) {
     url += '&skip=' + skip
   }
 
@@ -73,7 +73,7 @@ function List() {
       setItems(res)
       setIsLoading(false)
     })
-  }, [limit, setIsLoading, setItems, setProducts, skip])
+  }, [limit, skip, setIsLoading, setItems, setProducts])
 
   React.useEffect(() => {
     if (isSearchEmpty) {

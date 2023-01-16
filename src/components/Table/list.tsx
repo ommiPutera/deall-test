@@ -18,6 +18,7 @@ interface ITable {
 
 function TableList({items, columns, isLoading}: ITable) {
   const {classes} = useStyles()
+  const columnsLength = columns.length
 
   return (
     <div className={classes.wrapperTable}>
@@ -29,13 +30,20 @@ function TableList({items, columns, isLoading}: ITable) {
         className="table"
       >
         <thead className="thead">
-          <tr>
-            {columns.map((column: IColumn) => (
-              <th key={column.key}>{column.title}</th>
-            ))}
-          </tr>
+          {Boolean(items?.length) && (
+            <tr>
+              {columns.map((column: IColumn) => (
+                <th key={column.key}>{column.title}</th>
+              ))}
+            </tr>
+          )}
         </thead>
-        <tbody className={clsx('tbody', 'bg-white')}>
+        <tbody
+          className={clsx('tbody', 'bg-white', isLoading ? 'loading' : '')}
+        >
+          {Boolean(items?.length) && isLoading ? (
+            <LoadingBackground columnsLength={columnsLength} />
+          ) : null}
           <TbodyContent items={items} columns={columns} isLoading={isLoading} />
         </tbody>
       </Table>
@@ -44,7 +52,8 @@ function TableList({items, columns, isLoading}: ITable) {
 }
 
 function TbodyContent({items, columns, isLoading}: ITable) {
-  if (isLoading) return <LoadingTable columns={columns} />
+  if (!Boolean(items?.length) && isLoading)
+    return <LoadingTable columnsLength={columns.length} />
   if (Boolean(items?.length)) {
     return (
       <>
@@ -64,14 +73,27 @@ function TbodyContent({items, columns, isLoading}: ITable) {
       </>
     )
   } else {
-    return <NoDataComponent columns={columns} />
+    return <NoDataComponent columnsLength={columns.length} />
   }
 }
 
-function LoadingTable({columns}: {columns: IColumn[]}) {
+function LoadingBackground({columnsLength}: {columnsLength: number}) {
+  return (
+    <tr className="loadingBg flex justify-center items-center">
+      <td
+        className="bg-white rounded-md text-center text-sm font-bold"
+        colSpan={columnsLength}
+      >
+        Loading..
+      </td>
+    </tr>
+  )
+}
+
+function LoadingTable({columnsLength}: {columnsLength: number}) {
   return (
     <tr>
-      <td colSpan={columns.length}>
+      <td colSpan={columnsLength}>
         <div className="flex justify-center items-center py-20">
           <Loader size="md" />
         </div>
@@ -80,10 +102,10 @@ function LoadingTable({columns}: {columns: IColumn[]}) {
   )
 }
 
-function NoDataComponent({columns}: {columns: IColumn[]}) {
+function NoDataComponent({columnsLength}: {columnsLength: number}) {
   return (
     <tr>
-      <td colSpan={columns.length}>
+      <td colSpan={columnsLength}>
         <div className="flex justify-center items-center py-20">No Data</div>
       </td>
     </tr>
@@ -135,12 +157,26 @@ const useStyles = createStyles(theme => ({
         },
       },
       '.tbody': {
+        overflow: 'scroll',
         td: {
           color: theme.colors.gray[8],
           borderColor: theme.colors.gray[2],
-          width: 'max-width',
+          width: '100%',
           minWidth: '160px',
-          maxWidth: '280px',
+          maxWidth: '200px',
+        },
+      },
+      '.loading': {
+        position: 'relative',
+        '.loadingBg': {
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(0, 0, 0, 0.3)',
+          position: 'absolute',
         },
       },
     },
