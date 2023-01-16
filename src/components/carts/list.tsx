@@ -1,6 +1,8 @@
 'use client'
 
 import {useCartsStore} from '@/store/cartsStore'
+import {Button} from '@mantine/core'
+import Link from 'next/link'
 import React from 'react'
 import TableList from '../Table/list'
 
@@ -25,13 +27,6 @@ async function getAllCarts(limit: number, skip: number): Promise<any | null> {
   }
 }
 
-const columns = [
-  {title: 'Total', key: 'total'},
-  {title: 'Total Products', key: 'totalProducts'},
-  {title: 'Total Quantity', key: 'totalQuantity'},
-  {title: 'Total Discounted', key: 'discountedTotal'},
-]
-
 function List() {
   const {
     isLoading,
@@ -39,10 +34,28 @@ function List() {
     carts,
     setCarts,
     setItems,
+    setUserId,
     isSearchEmpty,
     limit,
     skip,
   } = useCartsStore(state => state)
+
+  const columns = [
+    {title: 'Uers ID', key: 'userId'},
+    {title: 'Total', key: 'total'},
+    {title: 'Total Products', key: 'totalProducts'},
+    {title: 'Total Quantity', key: 'totalQuantity'},
+    {title: 'Total Discounted', key: 'discountedTotal'},
+    {
+      title: 'Action',
+      key: 'id',
+      render: (row: any) => (
+        <Link href={'/carts/' + row.id + '/' + row.userId}>
+          <Button variant="default">Detail</Button>
+        </Link>
+      ),
+    },
+  ]
 
   const getCarts = React.useCallback(async () => {
     await getAllCarts(limit, skip).then(res => {
