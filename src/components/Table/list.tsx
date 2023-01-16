@@ -23,7 +23,7 @@ function TableList({items, columns, isLoading}: ITable) {
   const columnsLength = columns.length
 
   return (
-    <div className={classes.wrapperTable}>
+    <div className={clsx(classes.wrapperTable, 'bg-white')}>
       <Table
         horizontalSpacing="xl"
         verticalSpacing="xs"
@@ -40,9 +40,7 @@ function TableList({items, columns, isLoading}: ITable) {
             </tr>
           )}
         </thead>
-        <tbody
-          className={clsx('tbody', 'bg-white', isLoading ? 'loading' : '')}
-        >
+        <tbody className={clsx('tbody', isLoading ? 'loading' : '')}>
           {Boolean(items?.length) && isLoading ? (
             <LoadingBackground columnsLength={columnsLength} />
           ) : null}
@@ -54,8 +52,9 @@ function TableList({items, columns, isLoading}: ITable) {
 }
 
 function TbodyContent({items, columns, isLoading}: ITable) {
-  if (!Boolean(items?.length) && isLoading)
+  if (!Boolean(items?.length) && isLoading) {
     return <LoadingTable columnsLength={columns.length} />
+  }
   if (Boolean(items?.length)) {
     return (
       <>
@@ -83,7 +82,7 @@ function LoadingBackground({columnsLength}: {columnsLength: number}) {
   return (
     <tr className="loadingBg flex justify-center items-center">
       <td
-        className="bg-white rounded-md text-center text-sm font-bold"
+        className="rounded-md text-center text-sm font-bold"
         colSpan={columnsLength}
       >
         Loading..
@@ -95,9 +94,14 @@ function LoadingBackground({columnsLength}: {columnsLength: number}) {
 function LoadingTable({columnsLength}: {columnsLength: number}) {
   return (
     <tr>
-      <td colSpan={columnsLength}>
-        <div className="flex justify-center items-center py-20 bg-white">
+      <td colSpan={columnsLength} className="bg-white">
+        <div
+          className="flex justify-center items-center"
+          style={{height: '60vh'}}
+        >
           <Loader size="md" />
+          <br />
+          <div className="font-semibold text-base ml-4">Request process...</div>
         </div>
       </td>
     </tr>

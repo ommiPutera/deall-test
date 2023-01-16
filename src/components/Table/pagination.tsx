@@ -90,11 +90,16 @@ const useStyles = createStyles(theme => ({
     padding: '34px 22px',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     margin: '0 auto',
     overflowX: 'hidden',
 
     '.limit': {
-      width: '80px',
+      width: '60px',
+
+      '.mantine-Select-label': {
+        marginBottom: '10px',
+      },
     },
   },
 }))

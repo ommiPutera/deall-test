@@ -5,11 +5,21 @@ import {useProductsStore} from '@/store/productsStore'
 import React from 'react'
 import TableSearch from '../Table/search'
 
-async function getSearched(inputValue: string): Promise<any | null> {
+async function getSearched(
+  inputValue: string,
+  limit: number,
+  skip: number,
+): Promise<any | null> {
+  let url = `https://dummyjson.com/products/search?q=${inputValue}`
+  if (limit) {
+    url += '&limit=' + limit
+  }
+  if (skip || skip === 0) {
+    url += '&skip=' + skip
+  }
+
   try {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${inputValue}`,
-    )
+    const response = await fetch(url)
     if (!response?.ok) {
       return null
     }
@@ -25,6 +35,8 @@ function SearchProduct() {
     setProducts,
     isSearchEmpty,
     setIsLoading,
+    limit,
+    skip,
     setSkip,
     setLimit,
     setItems,
@@ -34,13 +46,22 @@ function SearchProduct() {
   const debouncedSearch = useDebounce({value: search, delay: 500})
 
   const handleSubmit = React.useCallback(async () => {
-    const searchedItems = await getSearched(debouncedSearch)
+    const searchedItems = await getSearched(debouncedSearch, limit, skip)
     setItems(searchedItems)
     setProducts(searchedItems.products)
     setIsLoading(false)
     setSkip(0)
     setLimit(10)
-  }, [debouncedSearch, setIsLoading, setItems, setLimit, setProducts, setSkip])
+  }, [
+    debouncedSearch,
+    limit,
+    setIsLoading,
+    setItems,
+    setLimit,
+    setProducts,
+    setSkip,
+    skip,
+  ])
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.value) {
