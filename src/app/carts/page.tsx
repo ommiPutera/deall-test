@@ -4,7 +4,10 @@ import TableComponent from '@/components/Table'
 
 async function CartsPage() {
   return (
-    <TableComponent>
+    <TableComponent
+      title="Table Products"
+      subTitle="List and Filters of Products"
+    >
       <List />
       <PaginationProduct />
     </TableComponent>

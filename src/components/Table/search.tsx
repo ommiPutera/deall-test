@@ -15,9 +15,10 @@ function TableSearch({onHandle}: SearchType) {
     <div
       className={clsx(
         classes.wrapperSearch,
-        'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6',
+        'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6',
       )}
     >
+      <div></div>
       <div></div>
       <div></div>
       <div></div>
@@ -27,6 +28,7 @@ function TableSearch({onHandle}: SearchType) {
             onChange={onHandle}
             radius="md"
             type="search"
+            size="xs"
             placeholder="Search..."
             rightSection={
               <Tooltip label="This is public" position="top-end" withArrow>
@@ -47,7 +49,7 @@ function TableSearch({onHandle}: SearchType) {
 
 const useStyles = createStyles(theme => ({
   wrapperSearch: {
-    padding: '20px',
+    padding: '50px 20px 10px 20px',
     width: '100%',
 
     '.mantine-Input.Wrapper-label': {

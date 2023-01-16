@@ -1,10 +1,18 @@
 'use client'
 
-import {createStyles, Select} from '@mantine/core'
+import {createStyles, Text, Title} from '@mantine/core'
 import clsx from 'clsx'
 import React from 'react'
 
-function TableComponent({children}: {children: React.ReactNode}) {
+function TableComponent({
+  children,
+  title,
+  subTitle,
+}: {
+  children: React.ReactNode
+  title: string
+  subTitle: string
+}) {
   const {classes} = useStyles()
 
   return (
@@ -13,51 +21,15 @@ function TableComponent({children}: {children: React.ReactNode}) {
         'bg-white drop-shadow-sm border-gray-100 border-2 rounded-xl my-4',
       )}
     >
+      <div className="p-4 mb-2">
+        <Title order={2}>{title}</Title>
+        <Text className="ml-1">{subTitle}</Text>
+      </div>
       {children}
     </div>
   )
 }
 
-const useStyles = createStyles(theme => ({
-  wrapperFilters: {
-    padding: '20px',
-    width: '100%',
-
-    '.mantine-Select-label': {
-      paddingBottom: '5px',
-    },
-    '.mantine-Select-input': {
-      padding: '20px 15px',
-    },
-  },
-
-  wrapperTable: {
-    margin: '0 auto',
-    overflowX: 'scroll',
-
-    '.table': {
-      thead: {
-        borderBottom: '1px solid',
-        borderColor: theme.colors.gray[5],
-
-        th: {
-          paddingTop: '18px',
-          paddingBottom: '18px',
-          textTransform: 'uppercase',
-          color: `${theme.colors.gray[6]} !important`,
-          fontSize: '11.5px !important',
-        },
-      },
-      '.tbody': {
-        td: {
-          borderColor: theme.colors.gray[2],
-          width: 'max-width',
-          minWidth: '160px',
-          maxWidth: '280px',
-        },
-      },
-    },
-  },
-}))
+const useStyles = createStyles(theme => ({}))
 
 export default TableComponent

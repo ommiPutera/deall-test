@@ -2,17 +2,20 @@
 
 import {create} from 'zustand'
 
-interface ProductType {
+export interface ProductType {
   id: number
   title: string
   brand: string
   price: number
   stock: number
-  category: number
+  category: string
+  description: string
+  discountPercentage: number
+  rating: number
 }
 
 interface IItems {
-  products: ProductType | []
+  products: ProductType[] | []
   total: number
   skip: number
   limit: number

@@ -99,7 +99,7 @@ function LoadingTable({columnsLength}: {columnsLength: number}) {
           className="flex justify-center items-center"
           style={{height: '60vh'}}
         >
-          <Loader size="md" />
+          <Loader />
           <br />
           <div className="font-semibold text-base ml-4">Request process...</div>
         </div>
