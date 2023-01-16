@@ -1,5 +1,5 @@
 import {List} from '@/components/carts/list'
-import PaginationProduct from '@/components/carts/pagination'
+import PaginationCarts from '@/components/carts/pagination'
 import TableComponent from '@/components/Table'
 
 async function CartsPage() {
@@ -9,7 +9,7 @@ async function CartsPage() {
       subTitle="List and Filters of Products"
     >
       <List />
-      <PaginationProduct />
+      <PaginationCarts />
     </TableComponent>
   )
 }

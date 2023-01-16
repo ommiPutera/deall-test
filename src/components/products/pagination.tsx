@@ -5,7 +5,7 @@ import React from 'react'
 import TablePagination from '../Table/pagination'
 
 function PaginationProducts() {
-  const {items, limit, skip, products, setSkip, setLimit, setIsLoading} =
+  const {items, limit, products, setSkip, setLimit, setIsLoading} =
     useProductsStore(state => state)
 
   const itemsLimit = items?.limit ?? 10
