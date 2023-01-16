@@ -67,10 +67,10 @@ function TablePagination({
         value={limit.toString()}
         onChange={onHandleLimit}
         data={[
-          {value: '5', label: '5'},
-          {value: '10', label: '10'},
-          {value: '50', label: '50'},
-          {value: '100', label: '100'},
+          {value: '5', label: '5', disabled: total <= 5},
+          {value: '10', label: '10', disabled: total <= 10},
+          {value: '50', label: '50', disabled: total <= 50},
+          {value: '100', label: '100', disabled: total < 100},
         ]}
       />
       <div className="flex flex-col lg:flex-row items-center">

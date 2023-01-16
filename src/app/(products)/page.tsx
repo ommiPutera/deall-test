@@ -1,14 +1,16 @@
-import {List} from '@/components/products/list'
-import PaginationProduct from '@/components/products/pagination'
-import SearchProduct from '@/components/products/searchProduct'
+import FiltersProducts from '@/components/products/filters'
+import {ListProducts} from '@/components/products/list'
+import PaginationProducts from '@/components/products/pagination'
+import SearchProducts from '@/components/products/searchProduct'
 import TableComponent from '@/components/Table'
 
 async function IndexPage() {
   return (
     <TableComponent>
-      <SearchProduct />
-      <List />
-      <PaginationProduct />
+      <FiltersProducts />
+      <SearchProducts />
+      <ListProducts />
+      <PaginationProducts />
     </TableComponent>
   )
 }

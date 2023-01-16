@@ -58,13 +58,15 @@ const columns = [
     formatUSD: true,
   },
   {title: 'Stock', key: 'stock'},
-  {title: 'Category', key: 'category'},
+  {title: 'Category', key: 'category', className: 'capitalize'},
 ]
 
-function List() {
+function ListProducts() {
   const {
+    isReload,
     isLoading,
     setIsLoading,
+    setIsReload,
     products,
     setProducts,
     setItems,
@@ -78,16 +80,17 @@ function List() {
       setProducts(res.products)
       setItems(res)
       setIsLoading(false)
+      setIsReload(false)
     })
-  }, [limit, skip, setIsLoading, setItems, setProducts])
+  }, [limit, skip, setProducts, setItems, setIsLoading, setIsReload])
 
   React.useEffect(() => {
-    if (isSearchEmpty) {
+    if (isSearchEmpty || isReload) {
       getProducts()
     }
-  }, [getProducts, isSearchEmpty, setIsLoading])
+  }, [getProducts, isReload, isSearchEmpty])
 
   return <TableList items={products} columns={columns} isLoading={isLoading} />
 }
 
-export {List, getAllProducts}
+export {ListProducts, getAllProducts}

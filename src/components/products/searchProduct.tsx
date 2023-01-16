@@ -30,7 +30,7 @@ async function getSearched(
   }
 }
 
-function SearchProduct() {
+function SearchProducts() {
   const {
     setProducts,
     isSearchEmpty,
@@ -69,4 +69,4 @@ function SearchProduct() {
   return <TableSearch onHandle={handleSearch} />
 }
 
-export default SearchProduct
+export default SearchProducts

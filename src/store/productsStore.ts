@@ -27,6 +27,8 @@ interface ProductsState {
   setProducts: (res: any) => void
   isSearchEmpty: boolean
   setIsSearchEmpty: (bool: boolean) => void
+  isReload: boolean
+  setIsReload: (bool: boolean) => void
   limit: number
   setLimit: (newLimit: number) => void
   skip: number
@@ -42,6 +44,8 @@ const useProductsStore = create<ProductsState>(set => ({
   setProducts: res => set(state => ({products: res})),
   isSearchEmpty: true,
   setIsSearchEmpty: bool => set(state => ({isSearchEmpty: bool})),
+  isReload: false,
+  setIsReload: bool => set(state => ({isReload: bool})),
   limit: 10,
   setLimit: newLimit => set(state => ({limit: newLimit})),
   skip: 0,

@@ -13,54 +13,6 @@ function TableComponent({children}: {children: React.ReactNode}) {
         'bg-white drop-shadow-sm border-gray-100 border-2 rounded-xl my-4',
       )}
     >
-      <div
-        className={clsx(
-          classes.wrapperFilters,
-          'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6',
-        )}
-      >
-        <div className="w-full">
-          <Select
-            radius="md"
-            className="item"
-            label="Pick a hashtag"
-            placeholder="Pick a hashtag"
-            data={['React', 'Angular', 'Svelte', 'Vue']}
-          />
-        </div>
-        <div className="w-full">
-          <Select
-            radius="md"
-            label="Pick a hashtag"
-            placeholder="Pick a hashtag"
-            data={['React', 'Angular', 'Svelte', 'Vue']}
-          />
-        </div>
-        <div className="w-full">
-          <Select
-            radius="md"
-            label="Pick a hashtag"
-            placeholder="Pick a hashtag"
-            data={['React', 'Angular', 'Svelte', 'Vue']}
-          />
-        </div>
-        <div className="w-full">
-          <Select
-            radius="md"
-            label="Pick a hashtag"
-            placeholder="Pick a hashtag"
-            data={['React', 'Angular', 'Svelte', 'Vue']}
-          />
-        </div>
-        <div className="w-full">
-          <Select
-            radius="md"
-            label="Pick a hashtag"
-            placeholder="Pick a hashtag"
-            data={['React', 'Angular', 'Svelte', 'Vue']}
-          />
-        </div>
-      </div>
       {children}
     </div>
   )
