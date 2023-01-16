@@ -82,7 +82,7 @@ function LoadingBackground({columnsLength}: {columnsLength: number}) {
   return (
     <tr className="loadingBg flex justify-center items-center">
       <td
-        className="rounded-md text-center text-sm font-bold"
+        className="rounded-md text-center text-sm font-bold bg-white"
         colSpan={columnsLength}
       >
         Loading..
