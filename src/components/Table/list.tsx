@@ -1,3 +1,5 @@
+'use client'
+
 import {toUSD} from '@/lib/utils/currency'
 import {createStyles, Loader, Table} from '@mantine/core'
 import clsx from 'clsx'
@@ -94,7 +96,7 @@ function LoadingTable({columnsLength}: {columnsLength: number}) {
   return (
     <tr>
       <td colSpan={columnsLength}>
-        <div className="flex justify-center items-center py-20">
+        <div className="flex justify-center items-center py-20 bg-white">
           <Loader size="md" />
         </div>
       </td>
@@ -141,7 +143,6 @@ function CustomTd({column, item}: {column: IColumn; item: any}) {
 const useStyles = createStyles(theme => ({
   wrapperTable: {
     margin: '0 auto',
-    overflowX: 'scroll',
 
     '.table': {
       thead: {
@@ -161,9 +162,9 @@ const useStyles = createStyles(theme => ({
         td: {
           color: theme.colors.gray[8],
           borderColor: theme.colors.gray[2],
-          width: '100%',
-          minWidth: '160px',
-          maxWidth: '200px',
+          width: 'max-width',
+          minWidth: '100px',
+          maxWidth: '260px',
         },
       },
       '.loading': {

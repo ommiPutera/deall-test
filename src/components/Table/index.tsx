@@ -1,8 +1,6 @@
 'use client'
 
-import {toUSD} from '@/lib/utils/currency'
-import {useProductsStore} from '@/store/productsStore'
-import {createStyles, Select, Table} from '@mantine/core'
+import {createStyles, Select} from '@mantine/core'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -10,7 +8,11 @@ function TableComponent({children}: {children: React.ReactNode}) {
   const {classes} = useStyles()
 
   return (
-    <div className={clsx('bg-white drop-shadow rounded-xl')}>
+    <div
+      className={clsx(
+        'bg-white drop-shadow-sm border-gray-100 border-2 rounded-xl my-4',
+      )}
+    >
       <div
         className={clsx(
           classes.wrapperFilters,

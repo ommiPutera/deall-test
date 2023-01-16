@@ -1,4 +1,6 @@
-import {Pagination, Select} from '@mantine/core'
+'use client'
+
+import {createStyles, Pagination, Select} from '@mantine/core'
 import {usePagination} from '@mantine/hooks'
 import React from 'react'
 
@@ -19,6 +21,7 @@ function TablePagination({
   initialPage,
   setIsLoading,
 }: IPagination) {
+  const {classes} = useStyles()
   const totalPage = Math.ceil(total / limit)
   const pagination = usePagination({total: totalPage, initialPage: initialPage})
 
@@ -52,13 +55,12 @@ function TablePagination({
   }
 
   return (
-    <>
-      <Pagination
-        page={pagination.active}
-        onChange={handleChange}
-        total={totalPage}
-      />
+    <div className={classes.wrapperPagination}>
       <Select
+        label="Set Limit"
+        size="xs"
+        className="limit"
+        radius="md"
         value={limit.toString()}
         onChange={onHandleLimit}
         data={[
@@ -68,11 +70,33 @@ function TablePagination({
           {value: '100', label: '100'},
         ]}
       />
-      <div className="">
-        Showing {from} to {to} of {total}
+      <div className="flex items-center">
+        <div className="text-sm mr-6">
+          Showing {from} to {to} of {total}
+        </div>
+        <Pagination
+          size="sm"
+          page={pagination.active}
+          onChange={handleChange}
+          total={totalPage}
+        />
       </div>
-    </>
+    </div>
   )
 }
+
+const useStyles = createStyles(theme => ({
+  wrapperPagination: {
+    padding: '34px 22px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '0 auto',
+    overflowX: 'hidden',
+
+    '.limit': {
+      width: '80px',
+    },
+  },
+}))
 
 export default TablePagination
