@@ -10,7 +10,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
   const {classes} = useStyles()
 
   return (
-    <div className={clsx('bg-white drop-shadow rounded-lg')}>
+    <div className={clsx('bg-white drop-shadow rounded-xl')}>
       <div
         className={clsx(
           classes.wrapperFilters,
@@ -19,6 +19,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
       >
         <div className="w-full">
           <Select
+            radius="md"
             className="item"
             label="Pick a hashtag"
             placeholder="Pick a hashtag"
@@ -27,6 +28,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
         </div>
         <div className="w-full">
           <Select
+            radius="md"
             label="Pick a hashtag"
             placeholder="Pick a hashtag"
             data={['React', 'Angular', 'Svelte', 'Vue']}
@@ -34,6 +36,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
         </div>
         <div className="w-full">
           <Select
+            radius="md"
             label="Pick a hashtag"
             placeholder="Pick a hashtag"
             data={['React', 'Angular', 'Svelte', 'Vue']}
@@ -41,6 +44,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
         </div>
         <div className="w-full">
           <Select
+            radius="md"
             label="Pick a hashtag"
             placeholder="Pick a hashtag"
             data={['React', 'Angular', 'Svelte', 'Vue']}
@@ -48,6 +52,7 @@ function TableComponent({children}: {children: React.ReactNode}) {
         </div>
         <div className="w-full">
           <Select
+            radius="md"
             label="Pick a hashtag"
             placeholder="Pick a hashtag"
             data={['React', 'Angular', 'Svelte', 'Vue']}

@@ -56,22 +56,32 @@ const columns = [
 ]
 
 function List() {
-  const {products, setProducts, setItems, isSearchEmpty, limit, skip} =
-    useProductsStore(state => state)
+  const {
+    isLoading,
+    setIsLoading,
+    products,
+    setProducts,
+    setItems,
+    isSearchEmpty,
+    limit,
+    skip,
+  } = useProductsStore(state => state)
 
   const getProducts = React.useCallback(async () => {
-    const res = await getAllProducts(limit, skip)
-    setProducts(res.products)
-    setItems(res)
-  }, [limit, setItems, setProducts, skip])
+    await getAllProducts(limit, skip).then(res => {
+      setProducts(res.products)
+      setItems(res)
+      setIsLoading(false)
+    })
+  }, [limit, setIsLoading, setItems, setProducts, skip])
 
   React.useEffect(() => {
     if (isSearchEmpty) {
       getProducts()
     }
-  }, [getProducts, isSearchEmpty])
+  }, [getProducts, isSearchEmpty, setIsLoading])
 
-  return <TableList items={products} columns={columns} />
+  return <TableList items={products} columns={columns} isLoading={isLoading} />
 }
 
 export {List, getAllProducts}

@@ -1,5 +1,5 @@
 import {toUSD} from '@/lib/utils/currency'
-import {createStyles, Table} from '@mantine/core'
+import {createStyles, Loader, Table} from '@mantine/core'
 import clsx from 'clsx'
 
 interface IColumn {
@@ -13,16 +13,17 @@ interface IColumn {
 interface ITable {
   items: []
   columns: IColumn[]
+  isLoading: boolean
 }
 
-function TableList({items, columns}: ITable) {
+function TableList({items, columns, isLoading}: ITable) {
   const {classes} = useStyles()
 
   return (
     <div className={classes.wrapperTable}>
       <Table
         horizontalSpacing="xl"
-        verticalSpacing="md"
+        verticalSpacing="xs"
         striped
         highlightOnHover
         className="table"
@@ -35,25 +36,57 @@ function TableList({items, columns}: ITable) {
           </tr>
         </thead>
         <tbody className={clsx('tbody', 'bg-white')}>
-          {Boolean(items?.length) &&
-            items.map((item: any) => (
-              <tr key={item.id}>
-                {columns.map((column: IColumn) => {
-                  if (typeof column.render === 'function') {
-                    return (
-                      <CustomTd key={column.key} column={column} item={item} />
-                    )
-                  } else {
-                    return (
-                      <DefaultTd key={column.key} column={column} item={item} />
-                    )
-                  }
-                })}
-              </tr>
-            ))}
+          <TbodyContent items={items} columns={columns} isLoading={isLoading} />
         </tbody>
       </Table>
     </div>
+  )
+}
+
+function TbodyContent({items, columns, isLoading}: ITable) {
+  if (isLoading) return <LoadingTable columns={columns} />
+  if (Boolean(items?.length)) {
+    return (
+      <>
+        {items.map((item: any) => (
+          <tr key={item.id}>
+            {columns.map((column: IColumn) => {
+              if (typeof column.render === 'function') {
+                return <CustomTd key={column.key} column={column} item={item} />
+              } else {
+                return (
+                  <DefaultTd key={column.key} column={column} item={item} />
+                )
+              }
+            })}
+          </tr>
+        ))}
+      </>
+    )
+  } else {
+    return <NoDataComponent columns={columns} />
+  }
+}
+
+function LoadingTable({columns}: {columns: IColumn[]}) {
+  return (
+    <tr>
+      <td colSpan={columns.length}>
+        <div className="flex justify-center items-center py-20">
+          <Loader size="md" />
+        </div>
+      </td>
+    </tr>
+  )
+}
+
+function NoDataComponent({columns}: {columns: IColumn[]}) {
+  return (
+    <tr>
+      <td colSpan={columns.length}>
+        <div className="flex justify-center items-center py-20">No Data</div>
+      </td>
+    </tr>
   )
 }
 
@@ -97,12 +130,13 @@ const useStyles = createStyles(theme => ({
           paddingTop: '18px',
           paddingBottom: '18px',
           textTransform: 'uppercase',
-          color: `${theme.colors.gray[6]} !important`,
-          fontSize: '11.5px !important',
+          color: `${theme.colors.gray[4]} !important`,
+          fontSize: '12px !important',
         },
       },
       '.tbody': {
         td: {
+          color: theme.colors.gray[8],
           borderColor: theme.colors.gray[2],
           width: 'max-width',
           minWidth: '160px',

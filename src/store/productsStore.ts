@@ -19,6 +19,8 @@ interface IItems {
 }
 
 interface ProductsState {
+  isLoading: boolean
+  setIsLoading: (bool: boolean) => void
   items: IItems
   setItems: (res: any) => void
   products: []
@@ -32,6 +34,8 @@ interface ProductsState {
 }
 
 const useProductsStore = create<ProductsState>(set => ({
+  isLoading: true,
+  setIsLoading: bool => set(state => ({isLoading: bool})),
   items: {products: [], total: 10, limit: '10', skip: '10'},
   setItems: res => set(state => ({items: res})),
   products: [],

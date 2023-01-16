@@ -25,6 +25,7 @@ function TableSearch({onHandle}: SearchType) {
         <form>
           <Input
             onChange={onHandle}
+            radius="md"
             type="search"
             placeholder="Search..."
             rightSection={
