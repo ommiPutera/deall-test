@@ -37,6 +37,8 @@ function SearchProducts() {
     setIsLoading,
     limit,
     skip,
+    setSkip,
+    setLimit,
     setItems,
     setIsSearchEmpty,
   } = useProductsStore(state => state)
@@ -47,8 +49,19 @@ function SearchProducts() {
     const searchedItems = await getSearched(debouncedSearch, limit, skip)
     setItems(searchedItems)
     setProducts(searchedItems.products)
+    setSkip(0)
+    setLimit(10)
     setIsLoading(false)
-  }, [debouncedSearch, limit, setIsLoading, setItems, setProducts, skip])
+  }, [
+    debouncedSearch,
+    limit,
+    setIsLoading,
+    setItems,
+    setLimit,
+    setProducts,
+    setSkip,
+    skip,
+  ])
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
     if (e.currentTarget.value) {
@@ -57,6 +70,7 @@ function SearchProducts() {
       setIsLoading(true)
     } else if (!e.currentTarget.value) {
       setIsSearchEmpty(true)
+      setIsLoading(false)
     }
   }
 

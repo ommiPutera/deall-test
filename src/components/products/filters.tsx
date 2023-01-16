@@ -7,18 +7,10 @@ import TableFilters from '../Table/filters'
 async function getProductsOf(
   by: string,
   value: string | number,
-  limit: number,
-  skip: number,
 ): Promise<any | null> {
   let url = 'https://dummyjson.com/products/'
   if (value) {
     url += by + '/' + value
-  }
-  if (limit) {
-    url += '?limit=' + limit
-  }
-  if (skip || skip === 0) {
-    url += '&skip=' + skip
   }
 
   try {
@@ -34,26 +26,20 @@ async function getProductsOf(
 }
 
 function FiltersProducts() {
-  const {
-    setItems,
-    setProducts,
-    isReload,
-    setIsReload,
-    setIsLoading,
-    limit,
-    skip,
-  } = useProductsStore(state => state)
+  const {setItems, setProducts, setIsReload, setIsLoading} = useProductsStore(
+    state => state,
+  )
 
   const handleSubmit = React.useCallback(
     async (by: string, value: string | number) => {
       if (value) {
-        const productsFilters = await getProductsOf(by, value, limit, skip)
+        const productsFilters = await getProductsOf(by, value)
         setItems(productsFilters)
         setProducts(productsFilters.products)
         setIsLoading(false)
       }
     },
-    [limit, setIsLoading, setItems, setProducts, skip],
+    [setIsLoading, setItems, setProducts],
   )
 
   const onFilter = (by: string, value: string | number) => {
@@ -62,7 +48,7 @@ function FiltersProducts() {
     return handleSubmit(by, value)
   }
 
-  const items = [
+  const FilterSItems = [
     {
       placeholder: 'Filter products by brand',
       label: 'Filter Brands',
@@ -100,7 +86,7 @@ function FiltersProducts() {
     },
   ]
 
-  return <TableFilters items={items} />
+  return <TableFilters items={FilterSItems} />
 }
 
 export default FiltersProducts
