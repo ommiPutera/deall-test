@@ -33,8 +33,14 @@ const columns = [
   {
     title: 'Product Name',
     key: 'title',
-    key2: 'description',
+    key2: 'rating',
     className: 'font-bold',
+    render: (row: any) => (
+      <div>
+        <p className="font-bold">{toUSD(row.title)}</p>
+        <p className="text-green-700 text-xs">Rating Product: {row.rating}⭐</p>
+      </div>
+    ),
   },
   {title: 'Brand', key: 'brand', className: 'capitalize'},
   {

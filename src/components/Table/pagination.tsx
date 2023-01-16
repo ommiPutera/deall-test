@@ -2,6 +2,7 @@
 
 import {createStyles, Pagination, Select} from '@mantine/core'
 import {usePagination} from '@mantine/hooks'
+import clsx from 'clsx'
 import React from 'react'
 
 interface IPagination {
@@ -55,11 +56,13 @@ function TablePagination({
   }
 
   return (
-    <div className={classes.wrapperPagination}>
+    <div
+      className={clsx(classes.wrapperPagination, 'flex flex-col lg:flex-row')}
+    >
       <Select
         label="Set Limit"
         size="xs"
-        className="limit"
+        className="limit mb-6 lg:mb-0"
         radius="md"
         value={limit.toString()}
         onChange={onHandleLimit}
@@ -70,8 +73,8 @@ function TablePagination({
           {value: '100', label: '100'},
         ]}
       />
-      <div className="flex items-center">
-        <div className="text-sm mr-6">
+      <div className="flex flex-col lg:flex-row items-center">
+        <div className="text-sm mr-6 mb-6 lg:mb-0">
           Showing {from} to {to} of {total}
         </div>
         <Pagination
@@ -88,17 +91,20 @@ function TablePagination({
 const useStyles = createStyles(theme => ({
   wrapperPagination: {
     padding: '34px 22px',
-    display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: '0 auto',
     overflowX: 'hidden',
 
     '.limit': {
-      width: '60px',
+      width: '70px',
 
       '.mantine-Select-label': {
         marginBottom: '10px',
+      },
+      '.mantine-Select-item': {
+        marginBottom: '5px',
+        textAlign: 'center',
       },
     },
   },

@@ -32,13 +32,13 @@ function TableList({items, columns, isLoading}: ITable) {
         className="table"
       >
         <thead className="thead">
-          {Boolean(items?.length) && (
+          {Boolean(items.length) ? (
             <tr>
               {columns.map((column: IColumn) => (
                 <th key={column.key}>{column.title}</th>
               ))}
             </tr>
-          )}
+          ) : null}
         </thead>
         <tbody className={clsx('tbody', isLoading ? 'loading' : '')}>
           {Boolean(items?.length) && isLoading ? (
@@ -111,8 +111,13 @@ function LoadingTable({columnsLength}: {columnsLength: number}) {
 function NoDataComponent({columnsLength}: {columnsLength: number}) {
   return (
     <tr>
-      <td colSpan={columnsLength}>
-        <div className="flex justify-center items-center py-20">No Data</div>
+      <td colSpan={columnsLength} className="bg-white">
+        <div
+          className="flex justify-center items-center py-20 text-base font-bold"
+          style={{height: '60vh'}}
+        >
+          No Data...
+        </div>
       </td>
     </tr>
   )
@@ -125,7 +130,7 @@ function DefaultTd({column, item}: {column: IColumn; item: any}) {
   }
 
   return (
-    <td key={column.key}>
+    <td key={column.key} className="">
       <span className={clsx(column?.className)}>{renderKey()}</span>
       <br />
       {column.key2 && (
@@ -147,6 +152,7 @@ function CustomTd({column, item}: {column: IColumn; item: any}) {
 const useStyles = createStyles(theme => ({
   wrapperTable: {
     margin: '0 auto',
+    overflow: 'scroll',
 
     '.table': {
       thead: {
@@ -164,11 +170,12 @@ const useStyles = createStyles(theme => ({
       '.tbody': {
         overflow: 'scroll',
         td: {
+          padding: '10px 20px',
           color: theme.colors.gray[8],
           borderColor: theme.colors.gray[2],
-          width: 'max-width',
+          width: 'max-content',
           minWidth: '100px',
-          maxWidth: '260px',
+          maxWidth: '240px',
         },
       },
       '.loading': {
