@@ -6,7 +6,7 @@ interface PageProps {
   }
 }
 
-async function getCart(id: string): Promise<any | null> {
+async function getCart(id?: string): Promise<any | null> {
   let url = 'https://dummyjson.com/carts/'
   if (id) {
     url += id
@@ -24,7 +24,7 @@ async function getCart(id: string): Promise<any | null> {
   }
 }
 
-async function getUser(userId: string): Promise<any | null> {
+async function getUser(userId?: string): Promise<any | null> {
   let url = 'https://dummyjson.com/users/'
   if (userId) {
     url += userId
