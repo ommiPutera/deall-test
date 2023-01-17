@@ -46,7 +46,7 @@ async function CartDetail({params}: PageProps) {
   const cartId = params.slug[0]
 
   const cart = await getCart(cartId)
-  const user = await getUser(cart.userId)
+  const user = await getUser(cart?.userId || '')
 
   return (
     <div>
