@@ -13,7 +13,6 @@ interface IDetail {
 
 function DetailCart({cart, user}: IDetail) {
   const {classes} = useStyles()
-  if (!cart?.length || !user?.length) return <></>
   return (
     <div className={classes.wrapperDetail}>
       <Title order={2}>Cart #{cart?.id}</Title>
@@ -30,12 +29,12 @@ function DetailCart({cart, user}: IDetail) {
         </div>
         <div>
           <Title order={3}>Cart Info</Title>
-          <InfoItem title="# of Items" value={cart.totalQuantity} />
-          <InfoItem title="Total Amount" value={toUSD(cart.total)} />
-          <InfoItem title="Total Products" value={cart.totalProducts} />
+          <InfoItem title="# of Items" value={cart?.totalQuantity} />
+          <InfoItem title="Total Amount" value={toUSD(cart?.total)} />
+          <InfoItem title="Total Products" value={cart?.totalProducts} />
         </div>
       </div>
-      <ListProducts items={cart.products} />
+      <ListProducts items={cart?.products} />
     </div>
   )
 }
