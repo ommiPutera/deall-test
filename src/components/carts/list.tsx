@@ -50,7 +50,7 @@ function List() {
       title: 'Action',
       key: 'id',
       render: (row: any) => (
-        <Link href={'/carts/' + row.id + '/' + row.userId}>
+        <Link href={'/carts/' + row.id}>
           <Button variant="default">Detail</Button>
         </Link>
       ),

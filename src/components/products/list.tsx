@@ -29,7 +29,7 @@ async function getAllProducts(
   }
 }
 
-const columns = [
+const defaultColumns = [
   {
     title: 'Product Name',
     key: 'title',
@@ -61,7 +61,7 @@ const columns = [
   {title: 'Category', key: 'category', className: 'capitalize'},
 ]
 
-function ListProducts() {
+function ListProducts({items, columns}: {items: []; columns?: []}) {
   const {
     isReload,
     isLoading,
@@ -90,7 +90,13 @@ function ListProducts() {
     }
   }, [getProducts, isReload, isSearchEmpty])
 
-  return <TableList items={products} columns={columns} isLoading={isLoading} />
+  return (
+    <TableList
+      items={items ?? products}
+      columns={columns ?? defaultColumns}
+      isLoading={isLoading}
+    />
+  )
 }
 
 export {ListProducts, getAllProducts}

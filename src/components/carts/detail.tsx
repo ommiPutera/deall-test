@@ -1,79 +1,71 @@
 'use client'
 
+import {toUSD} from '@/lib/utils/currency'
 import {useCartsStore} from '@/store/cartsStore'
+import {createStyles, Text, Title} from '@mantine/core'
 import React from 'react'
-
-async function getCart(id: string): Promise<any | null> {
-  let url = 'https://dummyjson.com/carts/'
-  if (id) {
-    url += id
-  }
-
-  try {
-    const response = await fetch(url)
-    if (!response?.ok) {
-      return null
-    }
-    const json = await response.json()
-    return json
-  } catch (error) {
-    return null
-  }
-}
-
-async function getUser(userId: string): Promise<any | null> {
-  let url = 'https://dummyjson.com/users/'
-  if (userId) {
-    url += userId
-  }
-
-  try {
-    const response = await fetch(url)
-    if (!response?.ok) {
-      return null
-    }
-    const json = await response.json()
-    return json
-  } catch (error) {
-    return null
-  }
-}
+import {ListProducts} from '../products/list'
 
 interface IDetail {
-  id: string
-  userId: string
+  cart: any
+  user: any
 }
 
-function DetailCart({id, userId}: IDetail) {
-  const {isLoading, setIsLoading} = useCartsStore(state => state)
-  const [items, setItems] = React.useState([])
-  const [userData, setUserData] = React.useState([])
-  const [cartProducts, setCartProducts] = React.useState([])
-
-  const getCarts = React.useCallback(async () => {
-    await getCart(id).then(res => {
-      setCartProducts(res.products)
-      setItems(res)
-      setIsLoading(false)
-    })
-  }, [id, setIsLoading])
-
-  const loadUser = React.useCallback(async () => {
-    await getUser(userId).then(res => {
-      setUserData(res)
-      setIsLoading(false)
-    })
-  }, [setIsLoading, userId])
-
-  React.useEffect(() => {
-    loadUser()
-  }, [loadUser])
-
+function DetailCart({cart, user}: IDetail) {
+  const {classes} = useStyles()
   return (
-    <div>
-      <h2>Detailll {id}</h2>
+    <div className={classes.wrapperDetail}>
+      <Title order={2}>Cart #{cart.id}</Title>
+      <br />
+      <div className="info-section grid grid-cols-2 gap-6">
+        <div>
+          <Title order={3}>User Info</Title>
+          <InfoItem title="Name" value={user.firstName + ' ' + user.lastName} />
+          <InfoItem title="Email" value={user.email} />
+          <InfoItem title="Phone Number" value={user.phone} />
+        </div>
+        <div>
+          <Title order={3}>Cart Info</Title>
+          <InfoItem title="# of Items" value={cart.totalQuantity} />
+          <InfoItem title="Total Amount" value={toUSD(cart.total)} />
+          <InfoItem title="Total Products" value={cart.totalProducts} />
+        </div>
+      </div>
+      <ListProducts items={cart.products} />
     </div>
   )
 }
+
+function InfoItem({title, value}: {title: string; value: string | number}) {
+  const {classes} = useStyles()
+  return (
+    <div className={classes.infoItem}>
+      <Text className="xl:text-base">{title}:</Text>
+      <Text className="xl:text-base">{value}</Text>
+    </div>
+  )
+}
+
+const useStyles = createStyles(theme => ({
+  wrapperDetail: {
+    padding: '20px',
+    width: '100%',
+
+    '.info-section': {
+      padding: '20px',
+      borderRadius: '10px',
+      background: theme.colors.gray[1],
+    },
+    '.mantine-Select-input': {
+      padding: '20px 15px',
+    },
+  },
+
+  infoItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  },
+}))
 
 export default DetailCart
