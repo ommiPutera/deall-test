@@ -13,16 +13,20 @@ interface IDetail {
 
 function DetailCart({cart, user}: IDetail) {
   const {classes} = useStyles()
+  if (!cart.length || !user.length) return <></>
   return (
     <div className={classes.wrapperDetail}>
-      <Title order={2}>Cart #{cart.id}</Title>
+      <Title order={2}>Cart #{cart?.id}</Title>
       <br />
       <div className="info-section grid grid-cols-2 gap-6">
         <div>
           <Title order={3}>User Info</Title>
-          <InfoItem title="Name" value={user.firstName + ' ' + user.lastName} />
-          <InfoItem title="Email" value={user.email} />
-          <InfoItem title="Phone Number" value={user.phone} />
+          <InfoItem
+            title="Name"
+            value={user?.firstName + ' ' + user?.lastName}
+          />
+          <InfoItem title="Email" value={user?.email} />
+          <InfoItem title="Phone Number" value={user?.phone} />
         </div>
         <div>
           <Title order={3}>Cart Info</Title>
