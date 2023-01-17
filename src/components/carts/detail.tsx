@@ -13,7 +13,7 @@ interface IDetail {
 
 function DetailCart({cart, user}: IDetail) {
   const {classes} = useStyles()
-  if (!cart.length || !user.length) return <></>
+  if (!cart?.length || !user?.length) return <></>
   return (
     <div className={classes.wrapperDetail}>
       <Title order={2}>Cart #{cart?.id}</Title>
