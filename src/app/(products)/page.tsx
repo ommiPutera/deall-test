@@ -11,8 +11,8 @@ async function IndexPage() {
       title="Table Products"
       subTitle="List and Filters of Products"
     >
-      <FiltersProducts />
       <SearchProducts />
+      <FiltersProducts />
       <ListProducts />
       <PaginationProducts />
     </TableComponent>

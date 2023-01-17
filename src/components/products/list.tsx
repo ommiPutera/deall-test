@@ -61,7 +61,7 @@ const defaultColumns = [
   {title: 'Category', key: 'category', className: 'capitalize'},
 ]
 
-function ListProducts({items, columns}: {items: []; columns?: []}) {
+function ListProducts({items, columns}: {items?: []; columns?: []}) {
   const {
     isReload,
     isLoading,

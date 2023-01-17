@@ -24,7 +24,13 @@ export default function RootStyleRegistry({
 
   return (
     <CacheProvider value={cache}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
         <ApplicationContainer>{children}</ApplicationContainer>
       </MantineProvider>
     </CacheProvider>

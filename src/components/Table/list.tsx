@@ -168,7 +168,6 @@ const useStyles = createStyles(theme => ({
         },
       },
       '.tbody': {
-        overflow: 'scroll',
         td: {
           padding: '10px 20px',
           color: theme.colors.gray[8],

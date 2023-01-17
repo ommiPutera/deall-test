@@ -16,17 +16,15 @@ function TableComponent({
   const {classes} = useStyles()
 
   return (
-    <div
-      className={clsx(
-        'bg-white drop-shadow-sm border-gray-100 border-2 rounded-xl my-4',
-      )}
-    >
+    <>
       <div className="p-4 mb-2">
         <Title order={2}>{title}</Title>
         <Text className="ml-1">{subTitle}</Text>
       </div>
-      {children}
-    </div>
+      <div className={clsx('bg-white border-gray-200 border rounded-lg my-4')}>
+        {children}
+      </div>
+    </>
   )
 }
 

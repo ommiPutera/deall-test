@@ -61,7 +61,7 @@ const useStyles = createStyles(theme => ({
       paddingBottom: '5px',
     },
     '.mantine-Select-input': {
-      padding: '20px 15px',
+      padding: '10px 15px',
     },
   },
 }))
