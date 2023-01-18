@@ -1,3 +1,5 @@
+'use client'
+
 import {createStyles} from '@mantine/core'
 import React from 'react'
 const Chart = React.lazy(() => import('react-apexcharts'))
