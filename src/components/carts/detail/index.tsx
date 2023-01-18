@@ -1,10 +1,10 @@
 'use client'
 
+import TableComponent from '@/components/Table'
 import {toUSD} from '@/lib/utils/currency'
-import {useCartsStore} from '@/store/cartsStore'
 import {createStyles, Text, Title} from '@mantine/core'
 import React from 'react'
-import {ListProducts} from '../products/list'
+import ListProducts from './products'
 
 interface IDetail {
   cart: any
@@ -13,11 +13,12 @@ interface IDetail {
 
 function DetailCart({cart, user}: IDetail) {
   const {classes} = useStyles()
+
   return (
     <div className={classes.wrapperDetail}>
       <Title order={2}>Cart #{cart?.id}</Title>
       <br />
-      <div className="info-section grid grid-cols-2 gap-6">
+      <div className="info-section grid grid-cols-2 gap-6 mb-6">
         <div>
           <Title order={3}>User Info</Title>
           <InfoItem
@@ -34,7 +35,9 @@ function DetailCart({cart, user}: IDetail) {
           <InfoItem title="Total Products" value={cart?.totalProducts} />
         </div>
       </div>
-      <ListProducts items={cart?.products} />
+      <TableComponent title="Products List">
+        <ListProducts items={cart?.products} />
+      </TableComponent>
     </div>
   )
 }

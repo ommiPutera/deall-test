@@ -19,8 +19,6 @@ interface IItems {
 }
 
 interface CartsState {
-  userId: string
-  setUserId: (userId: string) => void
   isLoading: boolean
   setIsLoading: (bool: boolean) => void
   items: IItems
@@ -36,8 +34,6 @@ interface CartsState {
 }
 
 const useCartsStore = create<CartsState>(set => ({
-  userId: '',
-  setUserId: userId => set(state => ({userId: userId})),
   isLoading: true,
   setIsLoading: bool => set(state => ({isLoading: bool})),
   items: {carts: [], total: 10, limit: 10, skip: 0},

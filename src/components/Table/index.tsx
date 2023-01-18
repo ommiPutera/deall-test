@@ -11,17 +11,21 @@ function TableComponent({
 }: {
   children: React.ReactNode
   title: string
-  subTitle: string
+  subTitle?: string
 }) {
   const {classes} = useStyles()
 
   return (
     <>
       <div className="p-4 mb-2">
-        <Title order={2}>{title}</Title>
-        <Text className="ml-1">{subTitle}</Text>
+        <Title order={3}>{title}</Title>
+        <Text className="ml-1 text-gray-400">{subTitle}</Text>
       </div>
-      <div className={clsx('bg-white border-gray-200 border rounded-lg my-4')}>
+      <div
+        className={clsx(
+          'bg-white border-gray-200 border rounded-lg my-4 overflow-hidden',
+        )}
+      >
         {children}
       </div>
     </>

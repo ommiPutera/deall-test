@@ -42,11 +42,11 @@ function ApplicationContainer({children}: AppShellTypes) {
           <Text>Application header</Text>
         </div>
       </Header>
-      <div className="grid grid-cols-1 lg:grid-cols-5">
+      <div className="grid grid-cols-1 lg:grid-cols-6">
         <div className="col-span-1 relative">
           <Navbars opened={opened} />
         </div>
-        <main className="col-span-4 ml-0 lg:ml-6">{children}</main>
+        <main className="col-span-5 ml-0 lg:ml-4">{children}</main>
       </div>
     </div>
   )

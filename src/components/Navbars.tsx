@@ -3,15 +3,25 @@
 import Link from 'next/link'
 import {useSelectedLayoutSegment} from 'next/navigation'
 import {clsx, createStyles, Navbar, NavLink} from '@mantine/core'
-import {IconPackage, IconShoppingCart} from '@tabler/icons'
+import {IconFileDescription, IconArrowAutofitRight} from '@tabler/icons'
 
 type NavbarsTypes = {
   opened: boolean
 }
 
 const mainLinksMockdata = [
-  {icon: IconPackage, label: 'Products', href: '/', segment: '(products)'},
-  {icon: IconShoppingCart, label: 'Carts', href: '/carts', segment: 'carts'},
+  {
+    icon: IconFileDescription,
+    label: 'Products List',
+    href: '/',
+    segment: '(products)',
+  },
+  {
+    icon: IconArrowAutofitRight,
+    label: 'Carts List',
+    href: '/carts',
+    segment: 'carts',
+  },
 ]
 
 function Navbars({opened}: NavbarsTypes) {
@@ -21,11 +31,11 @@ function Navbars({opened}: NavbarsTypes) {
   const links = mainLinksMockdata.map(link => (
     <Link key={link.label} href={link.href}>
       <NavLink
-        color="dark"
+        color="gray"
         className={clsx(classes.link, link.segment === segment ? 'active' : '')}
         active={link.segment === `${segment ?? ''}`}
         label={link.label}
-        icon={<link.icon size={18} stroke={2} />}
+        icon={<link.icon size={18} stroke={1} />}
       />
     </Link>
   ))
@@ -64,13 +74,8 @@ const useStyles = createStyles(theme => ({
     padding: '2px 10px',
 
     '.mantine-NavLink-label': {
-      fontSize: '14px',
-      letterSpacing: '0.2px',
+      fontSize: '13px',
     },
-  },
-
-  '.active': {
-    color: 'red',
   },
 }))
 

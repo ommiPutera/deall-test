@@ -34,11 +34,12 @@ function List() {
     carts,
     setCarts,
     setItems,
-    setUserId,
     isSearchEmpty,
     limit,
     skip,
   } = useCartsStore(state => state)
+
+  console.log('carts: ', carts)
 
   const columns = [
     {title: 'Uers ID', key: 'userId'},

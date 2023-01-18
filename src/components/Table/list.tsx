@@ -23,13 +23,18 @@ function TableList({items, columns, isLoading}: ITable) {
   const columnsLength = columns.length
 
   return (
-    <div className={clsx(classes.wrapperTable, 'bg-white')}>
+    <div
+      className={clsx(
+        classes.wrapperTable,
+        'bg-white w-full overflow-y-scroll',
+      )}
+    >
       <Table
         horizontalSpacing="xl"
         verticalSpacing="xs"
         striped
         highlightOnHover
-        className="table"
+        className="table overflow-hidden"
       >
         <thead className="thead">
           {Boolean(items.length) ? (
@@ -152,7 +157,12 @@ function CustomTd({column, item}: {column: IColumn; item: any}) {
 const useStyles = createStyles(theme => ({
   wrapperTable: {
     margin: '0 auto',
-    overflow: 'scroll',
+    width: '100%',
+    height: 'auto',
+
+    '::-webkit-scrollbar': {
+      display: 'none',
+    },
 
     '.table': {
       thead: {
