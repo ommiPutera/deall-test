@@ -1,12 +1,9 @@
 'use client'
 
-import React from 'react'
 import TableList from '@/components/Table/list'
 import {toUSD} from '@/lib/utils/currency'
 
 function ListProducts({items}: {items: []}) {
-  const [isLoading, setIsLoading] = React.useState(false)
-
   const columns = [
     {
       title: 'Product Name',
@@ -45,7 +42,7 @@ function ListProducts({items}: {items: []}) {
     },
   ]
 
-  return <TableList items={items} columns={columns} isLoading={isLoading} />
+  return <TableList items={items} columns={columns} />
 }
 
 export default ListProducts

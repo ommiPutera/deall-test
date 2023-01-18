@@ -53,6 +53,8 @@ function DetailCart({cart, user}: IDetail) {
       </div>
       <TableComponent title="Products List" subTitle="List of products in Cart">
         <ListProducts items={cart?.products} />
+
+        {/* Pagination can not implemented: because products cart response did not have limit, total, skip property  */}
       </TableComponent>
     </div>
   )

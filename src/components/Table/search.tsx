@@ -19,24 +19,22 @@ function TableSearch({onHandle}: SearchType) {
       )}
     >
       <div className="w-full">
-        <form>
-          <Input
-            onChange={onHandle}
-            radius="md"
-            type="search"
-            placeholder="Search..."
-            rightSection={
-              <Tooltip label="This is public" position="top-end" withArrow>
-                <div>
-                  <IconSearch
-                    size={18}
-                    style={{display: 'block', opacity: 0.5}}
-                  />
-                </div>
-              </Tooltip>
-            }
-          />
-        </form>
+        <Input
+          onChange={onHandle}
+          radius="md"
+          type="input"
+          placeholder="Search by product name."
+          rightSection={
+            <Tooltip label="search product" position="top-end" withArrow>
+              <div>
+                <IconSearch
+                  size={18}
+                  style={{display: 'block', opacity: 0.5}}
+                />
+              </div>
+            </Tooltip>
+          }
+        />
       </div>
     </div>
   )

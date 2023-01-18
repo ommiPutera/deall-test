@@ -26,7 +26,7 @@ function TablePagination({
 }: IPagination) {
   const {classes} = useStyles()
   const totalPage = Math.ceil(total / limit)
-  const currentPage = totalPage - (total - skip) / limit + 1
+  const currentPage = Math.floor(totalPage - (total - skip) / limit + 1)
   const pagination = usePagination({total: totalPage, initialPage: initialPage})
 
   const from = React.useMemo(() => {

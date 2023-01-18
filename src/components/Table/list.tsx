@@ -15,7 +15,7 @@ interface IColumn {
 interface ITable {
   items: []
   columns: IColumn[]
-  isLoading: boolean
+  isLoading?: boolean
 }
 
 function TableList({items, columns, isLoading}: ITable) {

@@ -64,6 +64,7 @@ function SearchProducts() {
   ])
 
   const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault()
     if (e.currentTarget.value) {
       setSearch(e.currentTarget.value)
       setIsSearchEmpty(false)
