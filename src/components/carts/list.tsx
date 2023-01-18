@@ -2,7 +2,7 @@
 
 import {toUSD} from '@/lib/utils/currency'
 import {useCartsStore} from '@/store/cartsStore'
-import {Button} from '@mantine/core'
+import {Button, Loader} from '@mantine/core'
 import Link from 'next/link'
 import React from 'react'
 import TableList from '../Table/list'
@@ -32,6 +32,8 @@ function List() {
   const {
     isLoading,
     setIsLoading,
+    isLoadingDetail,
+    setIsLoadingDetail,
     carts,
     setCarts,
     setItems,
@@ -66,8 +68,14 @@ function List() {
       title: 'Action',
       key: 'id',
       render: (row: any) => (
-        <Link href={'/carts/' + row.id}>
-          <Button variant="default">Detail</Button>
+        <Link
+          href={'/carts/' + row.id}
+          onClick={() => setIsLoadingDetail(true)}
+        >
+          <Button variant="default">
+            Detail
+            {isLoadingDetail && <Loader size="xs" className="ml-3" />}
+          </Button>
         </Link>
       ),
     },

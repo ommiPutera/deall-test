@@ -7,6 +7,7 @@ import {IconFileDescription, IconArrowAutofitRight} from '@tabler/icons'
 
 type NavbarsTypes = {
   opened: boolean
+  setOpened: (o: boolean) => void
 }
 
 const mainLinksMockdata = [
@@ -24,12 +25,12 @@ const mainLinksMockdata = [
   },
 ]
 
-function Navbars({opened}: NavbarsTypes) {
+function Navbars({opened, setOpened}: NavbarsTypes) {
   const segment = useSelectedLayoutSegment()
   const {classes} = useStyles()
 
   const links = mainLinksMockdata.map(link => (
-    <Link key={link.label} href={link.href}>
+    <Link key={link.label} href={link.href} onClick={() => setOpened(!opened)}>
       <NavLink
         color="gray"
         className={clsx(classes.link, link.segment === segment ? 'active' : '')}

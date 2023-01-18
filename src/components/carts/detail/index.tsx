@@ -2,6 +2,7 @@
 
 import TableComponent from '@/components/Table'
 import {toUSD} from '@/lib/utils/currency'
+import {useCartsStore} from '@/store/cartsStore'
 import {Button, createStyles, Text, Title} from '@mantine/core'
 import Link from 'next/link'
 import React from 'react'
@@ -14,6 +15,11 @@ interface IDetail {
 
 function DetailCart({cart, user}: IDetail) {
   const {classes} = useStyles()
+  const {setIsLoadingDetail} = useCartsStore(state => state)
+
+  React.useEffect(() => {
+    setIsLoadingDetail(false)
+  }, [setIsLoadingDetail])
 
   return (
     <div className={classes.wrapperDetail}>
@@ -24,7 +30,7 @@ function DetailCart({cart, user}: IDetail) {
         <Title order={3}>Cart #{cart?.id}</Title>
       </div>
       <br />
-      <div className="info-section grid grid-cols-2 gap-6 mb-6">
+      <div className="info-section grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div>
           <Title order={5} className="mb-2 text-gray-700">
             USER INFO

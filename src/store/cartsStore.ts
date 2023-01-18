@@ -21,6 +21,8 @@ interface IItems {
 interface CartsState {
   isLoading: boolean
   setIsLoading: (bool: boolean) => void
+  isLoadingDetail: boolean
+  setIsLoadingDetail: (bool: boolean) => void
   items: IItems
   setItems: (res: any) => void
   carts: []
@@ -36,6 +38,8 @@ interface CartsState {
 const useCartsStore = create<CartsState>(set => ({
   isLoading: true,
   setIsLoading: bool => set(state => ({isLoading: bool})),
+  isLoadingDetail: false,
+  setIsLoadingDetail: bool => set(state => ({isLoadingDetail: bool})),
   items: {carts: [], total: 10, limit: 10, skip: 0},
   setItems: res => set(state => ({items: res})),
   carts: [],

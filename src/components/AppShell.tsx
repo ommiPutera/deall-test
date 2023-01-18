@@ -23,7 +23,7 @@ function ApplicationContainer({children}: AppShellTypes) {
   const [opened, setOpened] = useState(false)
 
   return (
-    <div className={clsx(classes.appShell, 'container')}>
+    <div className={clsx(classes.appShell, 'container p-0')}>
       <Header
         height={{base: 50, md: 70}}
         p="md"
@@ -39,12 +39,12 @@ function ApplicationContainer({children}: AppShellTypes) {
               mr="xl"
             />
           </MediaQuery>
-          <Text>Application header</Text>
+          <Text className="text-lg font-extrabold">Admin Site</Text>
         </div>
       </Header>
       <div className="grid grid-cols-1 lg:grid-cols-6">
         <div className="col-span-1 relative">
-          <Navbars opened={opened} />
+          <Navbars opened={opened} setOpened={setOpened} />
         </div>
         <main className="col-span-5 ml-0 lg:ml-4">{children}</main>
       </div>
