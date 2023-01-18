@@ -26,28 +26,28 @@ function TablePagination({
 }: IPagination) {
   const {classes} = useStyles()
   const totalPage = Math.ceil(total / limit)
-  const activePage = skip / totalPage + 1
+  const currentPage = totalPage - (total - skip) / limit + 1
   const pagination = usePagination({total: totalPage, initialPage: initialPage})
 
   const from = React.useMemo(() => {
     if (!total) return '0'
-    if (activePage > total) return '1'
+    if (currentPage > total) return '1'
 
-    let res = (activePage - 1) * limit + 1
+    let res = (currentPage - 1) * limit + 1
     return res
-  }, [limit, activePage, total])
+  }, [total, currentPage, limit])
 
   const to = React.useMemo(() => {
-    let res = activePage * limit
+    let res = currentPage * limit
     if (res > total) res = total
     return res
-  }, [limit, activePage, total])
+  }, [limit, currentPage, total])
 
   const handleChange = (newPage: number) => {
     pagination.setPage(newPage)
 
     // Handle sending req
-    if (pagination.active !== newPage) {
+    if (currentPage !== newPage) {
       setSkip((newPage - 1) * limit)
       setIsLoading(true)
     }
@@ -84,7 +84,7 @@ function TablePagination({
         </div>
         <Pagination
           size="sm"
-          page={activePage}
+          page={currentPage}
           onChange={handleChange}
           total={totalPage}
         />

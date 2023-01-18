@@ -9,18 +9,18 @@ function PaginationProducts() {
     useProductsStore(state => state)
 
   const itemsLimit = items?.limit ?? 10
-  const itemsLTotal = items?.total ?? 0
-  const itemsLSkip = items?.skip ?? 0
+  const itemsTotal = items?.total ?? 0
+  const itemsSkip = items?.skip ?? 0
 
   const limitValues = [5, 10, 50, 100]
 
-  if (products.length) {
+  if (products?.length) {
     return (
       <TablePagination
         limit={limitValues.includes(itemsLimit) ? itemsLimit : limit}
         setLimit={setLimit}
-        total={itemsLTotal}
-        skip={itemsLSkip}
+        total={itemsTotal}
+        skip={itemsSkip}
         setSkip={setSkip}
         initialPage={1}
         setIsLoading={setIsLoading}

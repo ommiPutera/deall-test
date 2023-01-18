@@ -1,5 +1,6 @@
 'use client'
 
+import {toUSD} from '@/lib/utils/currency'
 import {useCartsStore} from '@/store/cartsStore'
 import {Button} from '@mantine/core'
 import Link from 'next/link'
@@ -39,14 +40,28 @@ function List() {
     skip,
   } = useCartsStore(state => state)
 
-  console.log('carts: ', carts)
-
   const columns = [
     {title: 'Uers ID', key: 'userId'},
-    {title: 'Total', key: 'total'},
+    {
+      title: 'Total',
+      key: 'total',
+      render: (row: any) => (
+        <div>
+          <p>{toUSD(row.total)}</p>
+        </div>
+      ),
+    },
     {title: 'Total Products', key: 'totalProducts'},
     {title: 'Total Quantity', key: 'totalQuantity'},
-    {title: 'Total Discounted', key: 'discountedTotal'},
+    {
+      title: 'Total Discounted',
+      key: 'discountedTotal',
+      render: (row: any) => (
+        <div>
+          <p>{toUSD(row.discountedTotal)}</p>
+        </div>
+      ),
+    },
     {
       title: 'Action',
       key: 'id',

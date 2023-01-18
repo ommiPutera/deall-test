@@ -48,11 +48,7 @@ async function CartDetail({params}: PageProps) {
   const cart = await getCart(cartId)
   const user = await getUser(cart?.userId)
 
-  return (
-    <div>
-      <DetailCart cart={cart} user={user} />
-    </div>
-  )
+  return <DetailCart cart={cart} user={user} />
 }
 
 export default CartDetail

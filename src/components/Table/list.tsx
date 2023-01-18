@@ -20,7 +20,7 @@ interface ITable {
 
 function TableList({items, columns, isLoading}: ITable) {
   const {classes} = useStyles()
-  const columnsLength = columns.length
+  const columnsLength = columns?.length
 
   return (
     <div
@@ -37,7 +37,7 @@ function TableList({items, columns, isLoading}: ITable) {
         className="table overflow-hidden"
       >
         <thead className="thead">
-          {Boolean(items.length) ? (
+          {Boolean(items?.length) ? (
             <tr>
               {columns.map((column: IColumn) => (
                 <th key={column.key}>{column.title}</th>
@@ -58,7 +58,7 @@ function TableList({items, columns, isLoading}: ITable) {
 
 function TbodyContent({items, columns, isLoading}: ITable) {
   if (!Boolean(items?.length) && isLoading) {
-    return <LoadingTable columnsLength={columns.length} />
+    return <LoadingTable columnsLength={columns?.length} />
   }
   if (Boolean(items?.length)) {
     return (
@@ -79,7 +79,7 @@ function TbodyContent({items, columns, isLoading}: ITable) {
       </>
     )
   } else {
-    return <NoDataComponent columnsLength={columns.length} />
+    return <NoDataComponent columnsLength={columns?.length} />
   }
 }
 
@@ -173,8 +173,8 @@ const useStyles = createStyles(theme => ({
           paddingTop: '18px',
           paddingBottom: '18px',
           textTransform: 'uppercase',
-          color: `${theme.colors.gray[4]} !important`,
-          fontSize: '12px !important',
+          color: `${theme.colors.gray[6]} !important`,
+          fontSize: '13px !important',
         },
       },
       '.tbody': {

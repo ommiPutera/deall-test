@@ -2,7 +2,8 @@
 
 import TableComponent from '@/components/Table'
 import {toUSD} from '@/lib/utils/currency'
-import {createStyles, Text, Title} from '@mantine/core'
+import {Button, createStyles, Text, Title} from '@mantine/core'
+import Link from 'next/link'
 import React from 'react'
 import ListProducts from './products'
 
@@ -16,11 +17,18 @@ function DetailCart({cart, user}: IDetail) {
 
   return (
     <div className={classes.wrapperDetail}>
-      <Title order={2}>Cart #{cart?.id}</Title>
+      <div className="flex gap-4 items-center">
+        <Link href="/carts">
+          <Button variant="default">Back</Button>
+        </Link>
+        <Title order={3}>Cart #{cart?.id}</Title>
+      </div>
       <br />
       <div className="info-section grid grid-cols-2 gap-6 mb-6">
         <div>
-          <Title order={3}>User Info</Title>
+          <Title order={5} className="mb-2 text-gray-700">
+            USER INFO
+          </Title>
           <InfoItem
             title="Name"
             value={user?.firstName + ' ' + user?.lastName}
@@ -29,13 +37,15 @@ function DetailCart({cart, user}: IDetail) {
           <InfoItem title="Phone Number" value={user?.phone} />
         </div>
         <div>
-          <Title order={3}>Cart Info</Title>
-          <InfoItem title="# of Items" value={cart?.totalQuantity} />
+          <Title order={5} className="mb-2 text-gray-700">
+            CART INFO
+          </Title>
+          <InfoItem title="Total Quantity" value={cart?.totalQuantity} />
           <InfoItem title="Total Amount" value={toUSD(cart?.total)} />
           <InfoItem title="Total Products" value={cart?.totalProducts} />
         </div>
       </div>
-      <TableComponent title="Products List">
+      <TableComponent title="Products List" subTitle="List of products in Cart">
         <ListProducts items={cart?.products} />
       </TableComponent>
     </div>
@@ -46,8 +56,8 @@ function InfoItem({title, value}: {title: string; value: string | number}) {
   const {classes} = useStyles()
   return (
     <div className={classes.infoItem}>
-      <Text className="xl:text-base">{title}:</Text>
-      <Text className="xl:text-base">{value}</Text>
+      <Text className="xl:text-base text-gray-700">{title}:</Text>
+      <Text className="xl:text-base text-gray-700">{value}</Text>
     </div>
   )
 }
@@ -60,7 +70,7 @@ const useStyles = createStyles(theme => ({
     '.info-section': {
       padding: '20px',
       borderRadius: '10px',
-      background: theme.colors.gray[1],
+      background: theme.colors.gray[0],
     },
     '.mantine-Select-input': {
       padding: '20px 15px',
