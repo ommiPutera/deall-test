@@ -31,7 +31,7 @@ function DetailCart({cart, user}: IDetail) {
       </div>
       <br />
       <div className="info-section grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div>
+        <div className="bg-gray-100 p-6 border rounded-md">
           <Title order={5} className="mb-2 text-gray-700">
             USER INFO
           </Title>
@@ -42,13 +42,20 @@ function DetailCart({cart, user}: IDetail) {
           <InfoItem title="Email" value={user?.email} />
           <InfoItem title="Phone Number" value={user?.phone} />
         </div>
-        <div>
+        <div className="bg-gray-100 p-6 border rounded-md">
           <Title order={5} className="mb-2 text-gray-700">
             CART INFO
           </Title>
           <InfoItem title="Total Quantity" value={cart?.totalQuantity} />
-          <InfoItem title="Total Amount" value={toUSD(cart?.total)} />
           <InfoItem title="Total Products" value={cart?.totalProducts} />
+          <InfoItem
+            title="Total Amount"
+            value={
+              <div>
+                <b>{toUSD(cart?.total)}</b>
+              </div>
+            }
+          />
         </div>
       </div>
       <TableComponent title="Products List" subTitle="List of products in Cart">
@@ -60,7 +67,13 @@ function DetailCart({cart, user}: IDetail) {
   )
 }
 
-function InfoItem({title, value}: {title: string; value: string | number}) {
+function InfoItem({
+  title,
+  value,
+}: {
+  title: string
+  value: string | number | JSX.Element
+}) {
   const {classes} = useStyles()
   return (
     <div className={classes.infoItem}>
@@ -76,9 +89,8 @@ const useStyles = createStyles(theme => ({
     width: '100%',
 
     '.info-section': {
-      padding: '20px',
       borderRadius: '10px',
-      background: theme.colors.gray[0],
+      gap: '20px',
     },
     '.mantine-Select-input': {
       padding: '20px 15px',

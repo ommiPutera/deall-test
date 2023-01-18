@@ -60,7 +60,7 @@ const useStyles = createStyles(theme => ({
   },
 
   logo: {
-    fontSize: '17px',
+    fontSize: '22px',
     fontWeight: 600,
   },
 }))

@@ -29,6 +29,7 @@ async function getAllCarts(limit: number, skip: number): Promise<any | null> {
 }
 
 function List() {
+  const [cartId, setCartId] = React.useState(null)
   const {
     isLoading,
     setIsLoading,
@@ -70,11 +71,16 @@ function List() {
       render: (row: any) => (
         <Link
           href={'/carts/' + row.id}
-          onClick={() => setIsLoadingDetail(true)}
+          onClick={() => {
+            setIsLoadingDetail(true)
+            setCartId(row.id)
+          }}
         >
           <Button variant="default">
             Detail
-            {isLoadingDetail && <Loader size="xs" className="ml-3" />}
+            {isLoadingDetail && row.id === cartId ? (
+              <Loader size="xs" className="ml-3" />
+            ) : null}
           </Button>
         </Link>
       ),
