@@ -1,11 +1,7 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import {createStyles} from '@mantine/core'
 import React from 'react'
-const Chart = dynamic(() => import('react-apexcharts'), {ssr: false})
-
-if (typeof window !== 'undefined') window.ApexCharts = Chart
 interface ICharts {
   borderRadius?: number
   formatter?: Function
