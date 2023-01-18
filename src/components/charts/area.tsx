@@ -10,7 +10,7 @@ interface ICharts {
   sparkline?: boolean
   bar?: boolean
   size: {width: string; height: string}
-  options?: object
+  options?: any
   title?: {main: string; sub?: string}
   colors?: Array<string>
   categories?: Array<string>
