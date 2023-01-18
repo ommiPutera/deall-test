@@ -1,5 +1,6 @@
 import {createStyles} from '@mantine/core'
 import React from 'react'
+const Chart = React.lazy(() => import('react-apexcharts'))
 
 interface ICharts {
   borderRadius?: number
@@ -98,13 +99,13 @@ function AreaChart({
 
   return (
     <div className={classes.wrapper}>
-      {/* <Chart
+      <Chart
         options={chartOptions}
         series={series}
         type="area"
         width={width}
         height={height}
-      /> */}
+      />
     </div>
   )
 }
