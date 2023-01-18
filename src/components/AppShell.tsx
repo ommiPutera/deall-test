@@ -34,7 +34,7 @@ function ApplicationContainer({children}: AppShellTypes) {
             <Burger
               opened={opened}
               onClick={() => setOpened(o => !o)}
-              size="sm"
+              size="md"
               color={theme.colors.gray[6]}
               mr="xl"
             />
@@ -46,7 +46,7 @@ function ApplicationContainer({children}: AppShellTypes) {
         <div className="col-span-1 relative">
           <Navbars opened={opened} setOpened={setOpened} />
         </div>
-        <main className="col-span-5 ml-0 lg:ml-4">{children}</main>
+        <main className="col-span-5 ml-0 lg:ml-3">{children}</main>
       </div>
     </div>
   )

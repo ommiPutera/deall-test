@@ -16,8 +16,8 @@ function TableComponent({
   const {classes} = useStyles()
 
   return (
-    <>
-      <div className="p-4 mb-2">
+    <div className="mx-4">
+      <div className="p-4 mb-2 mt-3">
         <Title order={3}>{title}</Title>
         <Text className={clsx(classes.subTitle)}>{subTitle}</Text>
       </div>
@@ -28,7 +28,7 @@ function TableComponent({
       >
         {children}
       </div>
-    </>
+    </div>
   )
 }
 
