@@ -39,7 +39,7 @@ function ApplicationContainer({children}: AppShellTypes) {
               mr="xl"
             />
           </MediaQuery>
-          <Text className="text-lg font-extrabold">Admin Site</Text>
+          <Text className={classes.logo}>Admin Site</Text>
         </div>
       </Header>
       <div className="grid grid-cols-1 lg:grid-cols-6">
@@ -57,6 +57,11 @@ const useStyles = createStyles(theme => ({
     '.header': {
       position: 'sticky',
     },
+  },
+
+  logo: {
+    fontSize: '17px',
+    fontWeight: 600,
   },
 }))
 

@@ -36,7 +36,7 @@ function Navbars({opened, setOpened}: NavbarsTypes) {
         className={clsx(classes.link, link.segment === segment ? 'active' : '')}
         active={link.segment === `${segment ?? ''}`}
         label={link.label}
-        icon={<link.icon size={18} stroke={1} />}
+        icon={<link.icon size={19} stroke={1} />}
       />
     </Link>
   ))
@@ -65,7 +65,7 @@ const useStyles = createStyles(theme => ({
 
   main: {
     flex: 1,
-    padding: '28px 22px',
+    padding: '10px 22px',
   },
 
   link: {
@@ -75,7 +75,7 @@ const useStyles = createStyles(theme => ({
     padding: '2px 10px',
 
     '.mantine-NavLink-label': {
-      fontSize: '13px',
+      fontSize: '14px',
     },
   },
 }))

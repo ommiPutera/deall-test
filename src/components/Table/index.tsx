@@ -19,9 +19,7 @@ function TableComponent({
     <>
       <div className="p-4 mb-2">
         <Title order={3}>{title}</Title>
-        <Text className={clsx(classes.subTitle, 'text-gray-400')}>
-          {subTitle}
-        </Text>
+        <Text className={clsx(classes.subTitle)}>{subTitle}</Text>
       </div>
       <div
         className={clsx(
@@ -37,7 +35,7 @@ function TableComponent({
 const useStyles = createStyles(theme => ({
   subTitle: {
     marginTop: '4px',
-    color: theme.colors.gray[0],
+    color: theme.colors.gray[6],
     fontSize: '13px',
   },
 }))
