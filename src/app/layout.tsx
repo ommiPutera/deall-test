@@ -1,5 +1,6 @@
 import {Inter as FontSans} from '@next/font/google'
 import RootStyleRegistry from './emotion'
+import Script from 'next/script'
 import clsx from 'clsx'
 import '../styles/globals.css'
 

@@ -1,6 +1,6 @@
 import {createStyles} from '@mantine/core'
 import React from 'react'
-const Chart = React.lazy(() => import('react-apexcharts'))
+import Chart from 'react-apexcharts'
 
 interface ICharts {
   borderRadius?: number
