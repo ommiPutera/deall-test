@@ -65,7 +65,7 @@ const useStyles = createStyles(theme => ({
 
   main: {
     flex: 1,
-    padding: '10px 22px',
+    padding: '10px 22px 0 0',
   },
 
   link: {

@@ -1,8 +1,13 @@
 import {createStyles, Select} from '@mantine/core'
 import clsx from 'clsx'
 
+type optionType = {
+  label: string
+  value: string
+}
+
 interface IFilter {
-  options: string[]
+  options: optionType[]
   placeholder: string
   label: string
   key: string

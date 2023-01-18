@@ -50,21 +50,12 @@ function List() {
       key: 'total',
       render: (row: any) => (
         <div>
-          <p>{toUSD(row.total)}</p>
+          <b>{toUSD(row.total)}</b>
         </div>
       ),
     },
     {title: 'Total Products', key: 'totalProducts'},
     {title: 'Total Quantity', key: 'totalQuantity'},
-    {
-      title: 'Total Discounted',
-      key: 'discountedTotal',
-      render: (row: any) => (
-        <div>
-          <p>{toUSD(row.discountedTotal)}</p>
-        </div>
-      ),
-    },
     {
       title: 'Action',
       key: 'id',
@@ -76,10 +67,10 @@ function List() {
             setCartId(row.id)
           }}
         >
-          <Button variant="default">
+          <Button color="gray" variant="default" compact size="sm">
             Detail
             {isLoadingDetail && row.id === cartId ? (
-              <Loader size="xs" className="ml-3" />
+              <Loader size="xs" className="ml-2" color="gray" />
             ) : null}
           </Button>
         </Link>
