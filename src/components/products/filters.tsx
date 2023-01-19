@@ -34,8 +34,6 @@ async function getProductsDummyOf(
     url += by + '/' + value
   }
 
-  console.log(url)
-
   try {
     const response = await fetch(url)
     if (!response?.ok) {

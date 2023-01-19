@@ -15,12 +15,9 @@ function TableSearch({onHandle}: SearchType) {
     <div
       className={clsx(
         classes.wrapperSearch,
-        'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6',
+        'grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-6 mt-3',
       )}
     >
-      <div></div>
-      <div></div>
-      <div></div>
       <div className="w-full">
         <Input
           onChange={onHandle}
